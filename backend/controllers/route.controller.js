@@ -123,7 +123,7 @@ const checkRouteOverlap = async (req, res) => {
         s.stop_id,
         s.stop_name
       FROM route_stop rs
-      JOIN route r ON rs.route_id = rs.route_id
+      JOIN route r ON rs.route_id = r.route_id
       JOIN stop  s ON rs.stop_id  = s.stop_id
       WHERE rs.stop_id IN (?)
       ORDER BY r.route_id ASC
