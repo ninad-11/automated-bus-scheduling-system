@@ -22,3 +22,6 @@ jobs:
 
     - name: Build check
       run: cd backend && echo "Build successful"
+
+    - name: Run tests
+      run: cd backend && npm test
