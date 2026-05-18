@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Schedule Duty - Bus Scheduling</title>
+
+<!-- Bootstrap CSS -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+<!-- Custom CSS -->
+<link rel="stylesheet" href="css/style.css">
+
+</head>
+<body>
+
+<!-- ✅ Navbar -->
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark shadow-sm">
+    <div class="container-fluid">
+        <a class="navbar-brand d-flex align-items-center fw-bold" href="index.html">
+    <img src="image/logo2.png" alt="logo" class="me-2" style="height:40px;">
+    Bus Scheduling
+</a>
+
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navMenu">
+        <ul class="navbar-nav ms-auto">
+            <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+            <li class="nav-item"><a class="nav-link" href="buses.html">Buses</a></li>
+            <li class="nav-item"><a class="nav-link" href="crew.html">Crew</a></li>
+            <li class="nav-item"><a class="nav-link active" href="schedule.html">Schedule</a></li>
+            <li class="nav-item"><a class="nav-link" href="route.html">Routes</a></li>
+            <li class="nav-item"><a class="nav-link" href="report.html">Reports</a></li>
+        </ul>
+    </div>
+</div>
+
+
+</nav>
+
+<!-- ✅ Main Container -->
+
+<div class="container mt-5">
+
+<div class="row g-4">
+
+    <!-- ✅ CREATE DUTY -->
+    <div class="col-md-4">
+        <div class="card p-4 shadow h-100">
+            <h5 class="text-center mb-3">➕ Create Duty</h5>
+
+            <form id="dutyForm">
+                <input type="text" id="busId" class="form-control mb-2" placeholder="Bus ID" required>
+                <input type="text" id="driverId" class="form-control mb-2" placeholder="Driver ID" required>
+                <input type="text" id="conductorId" class="form-control mb-2" placeholder="Conductor ID" required>
+
+                <input type="datetime-local" id="startTime" class="form-control mb-2" required>
+                <input type="datetime-local" id="endTime" class="form-control mb-2" required>
+
+                <input type="text" id="dutyType" class="form-control mb-2" placeholder="Duty Type" required>
+                <input type="text" id="scheduleId" class="form-control mb-2" placeholder="Schedule ID" required>
+                <input type="text" id="shift" class="form-control mb-2" placeholder="Shift" required>
+                <input type="text" id="routeId" class="form-control mb-2" placeholder="Route ID" required>
+
+                <button type="submit" class="btn btn-primary w-100">Create Duty</button>
+            </form>
+
+            <p id="message" class="text-center mt-2"></p>
+        </div>
+    </div>
+
+    <!-- ✅ GET ALL DUTIES -->
+    <div class="col-md-4">
+        <div class="card p-4 shadow h-100">
+            <h5 class="text-center mb-3">📋 All Duties</h5>
+
+            <button class="btn btn-success w-100 mb-2" onclick="loadDuties()">Load Duties</button>
+
+            <div class="table-responsive" style="max-height: 300px;">
+                <table class="table table-bordered text-center">
+                    <thead class="table-dark">
+                        <tr>
+                            <th>Bus</th>
+                            <th>Driver</th>
+                            <th>Route</th>
+                        </tr>
+                    </thead>
+                    <tbody id="dutyTable"></tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <!-- ✅ GET DUTY BY DATE -->
+    <div class="col-md-4">
+        <div class="card p-4 shadow h-100">
+            <h5 class="text-center mb-3">📅 Duty By Date</h5>
+
+            <input type="date" id="dutyDate" class="form-control mb-2">
+            <button class="btn btn-warning w-100 mb-2" onclick="getDutyByDate()">Get Duties</button>
+
+            <ul id="dateDutyList" class="list-group"></ul>
+        </div>
+    </div>
+
+</div>
+
+
+</div>
+
+<!-- Footer -->
+
+<footer class="text-center mt-5 p-3 bg-dark text-white">
+    <p class="mb-0">© 2026 Bus Scheduling System</p>
+</footer>
+
+<!-- Bootstrap JS -->
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+<!-- ✅ JS -->
+
+<script>
+
+// CREATE DUTY
+document.getElementById("dutyForm").addEventListener("submit", function(e) {
+    e.preventDefault();
+
+    const data = {
+        busId: document.getElementById("busId").value,
+        driverId: document.getElementById("driverId").value,
+        conductorId: document.getElementById("conductorId").value,
+        startTime: document.getElementById("startTime").value,
+        endTime: document.getElementById("endTime").value,
+        dutyType: document.getElementById("dutyType").value,
+        scheduleId: document.getElementById("scheduleId").value,
+        shift: document.getElementById("shift").value,
+        routeId: document.getElementById("routeId").value
+    };
+
+    fetch("http://localhost:3000/api/create-duty", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(data)
+    })
+    .then(res => res.json())
+    .then(data => {
+        document.getElementById("message").innerText = data.message;
+        document.getElementById("dutyForm").reset();
+    })
+    .catch(err => {
+        console.error(err);
+        document.getElementById("message").innerText = "Error creating duty";
+    });
+});
+
+// LOAD ALL DUTIES
+function loadDuties() {
+    dutyTable.innerHTML = "<tr><td colspan='3'>Loading...</td></tr>";
+
+    fetch("http://localhost:3000/api/get-duties")
+    .then(res => res.json())
+    .then(result => {
+
+    let rows = "";
+
+    result.data.forEach(d => {
+        rows += `
+            <tr>
+                <td>${d.bus_registration_number}</td>
+                <td>${d.driver_name}</td>
+                <td>${d.route_id}</td>
+            </tr>
+        `;
+    });
+
+    dutyTable.innerHTML = rows;
+    })
+}
+
+// GET DUTY BY DATE
+function getDutyByDate() {
+    const date = dutyDate.value;
+
+    fetch("http://localhost:3000/api/get-duties-by-date?date=" + date)
+    .then(res => res.json())
+    .then(result => {
+
+    let list = "";
+
+    result.data.forEach(d => {
+        list += `
+        <li class="list-group-item">
+            Bus: ${d.bus_registration_number},
+            Driver: ${d.driver_name}
+        </li>`;
+    });
+
+    dateDutyList.innerHTML = list;
+})
+}
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crew - Bus Scheduling</title>
+
+ 
+<!-- Bootstrap CSS -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+<!-- Custom CSS -->
+<link rel="stylesheet" href="css/style.css">
+ 
+
+</head>
+<body>
+
+<!-- ✅ Navbar -->
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark shadow-sm">
+    <div class="container-fluid">
+        <a class="navbar-brand d-flex align-items-center fw-bold" href="index.html">
+    <img src="image/logo2.png" alt="logo" class="me-2" style="height:40px;">
+    Bus Scheduling
+</a>
+
+ 
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navMenu">
+        <ul class="navbar-nav ms-auto">
+            <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+            <li class="nav-item"><a class="nav-link" href="buses.html">Buses</a></li>
+            <li class="nav-item"><a class="nav-link active" href="crew.html">Crew</a></li>
+            <li class="nav-item"><a class="nav-link" href="schedule.html">Schedule</a></li>
+            <li class="nav-item"><a class="nav-link" href="route.html">Routes</a></li>
+            <li class="nav-item"><a class="nav-link" href="report.html">Reports</a></li>
+        </ul>
+    </div>
+</div>
+ 
+
+</nav>
+
+<!-- ✅ Main Container -->
+
+<div class="container mt-5">
+
+ 
+<!-- 🔥 Intro -->
+<div class="text-center mb-5">
+    <h2 class="fw-bold">Crew Management 👨‍✈️</h2>
+    <p class="text-muted">
+        Manage drivers and conductors efficiently. Assign crew members to duties
+        and ensure smooth bus operations without conflicts.
+    </p>
+</div>
+
+<div class="row g-4">
+
+    <!-- ✅ ADD CREW -->
+    <div class="col-md-4">
+        <div class="card p-4 shadow h-100">
+            <h5 class="text-center mb-2">➕ Add Crew</h5>
+            <p class="text-muted small text-center">
+                Add new driver or conductor to the system.
+            </p>
+
+            <form id="crewForm">
+                <input type="text" id="crewName" class="form-control mb-2" placeholder="Crew Name" required>
+
+                <select id="crewRole" class="form-select mb-2" required>
+                    <option value="">Select Role</option>
+                    <option value="Driver">Driver</option>
+                    <option value="Conductor">Conductor</option>
+                </select>
+
+                <button type="submit" class="btn btn-success w-100">Add Crew</button>
+            </form>
+
+            <p id="crewMessage" class="text-center mt-2"></p>
+        </div>
+    </div>
+
+    <!-- ✅ VIEW CREW -->
+    <div class="col-md-8">
+        <div class="card p-4 shadow h-100">
+
+            <h5 class="text-center mb-2">📋 Crew List</h5>
+            <p class="text-muted small text-center">
+                View all registered crew members and their roles.
+            </p>
+
+            <button class="btn btn-primary mb-3" onclick="loadCrew()">Load Crew</button>
+
+            <div class="table-responsive">
+                <table class="table table-bordered text-center">
+                    <thead class="table-dark">
+                        <tr>
+                            <th>ID</th>
+                            <th>Name</th>
+                            <th>Role</th>
+                        </tr>
+                    </thead>
+                    <tbody id="crewTable">
+                        <tr>
+                            <td colspan="3">Click "Load Crew" to view data</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+        </div>
+    </div>
+
+</div>
+ 
+
+</div>
+
+
+<!-- Bootstrap JS -->
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+<!-- ✅ JS -->
+
+<script>
+
+// ADD CREW
+document.getElementById("crewForm").addEventListener("submit", function(e) {
+    e.preventDefault();
+
+    const name = document.getElementById("crewName").value;
+    const role = document.getElementById("crewRole").value;
+
+    fetch("http://localhost:3000/api/add-crew", {
+        method: "POST",
+        headers: {"Content-Type": "application/json"},
+        body: JSON.stringify({ name, role })
+    })
+    .then(res => res.json())
+    .then(() => {
+        document.getElementById("crewMessage").innerText = "✅ Crew added successfully!";
+        document.getElementById("crewForm").reset();
+    })
+    .catch(() => {
+        document.getElementById("crewMessage").innerText = "❌ Error adding crew";
+    });
+});
+
+// LOAD CREW
+function loadCrew() {
+    document.getElementById("crewTable").innerHTML =
+        "<tr><td colspan='3'>Loading...</td></tr>";
+
+    fetch("http://localhost:3000/api/get-crew-data")
+    .then(res => res.json())
+    .then(data => {
+        let rows = "";
+
+        if (data.data.length === 0) {
+            rows = "<tr><td colspan='3'>No crew found</td></tr>";
+        } else {
+            data.data.forEach(crew => {
+                rows += `
+                    <tr>
+                        <td>${crew.crew_id}</td>
+                        <td>${crew.name}</td>
+                        <td>${crew.role}</td>
+                    </tr>
+                `;
+            });
+        }
+
+        document.getElementById("crewTable").innerHTML = rows;
+    })
+    .catch(() => {
+        document.getElementById("crewTable").innerHTML =
+            "<tr><td colspan='3'>Error loading crew</td></tr>";
+    });
+}
+
+</script>
+
+</body>
+</html>

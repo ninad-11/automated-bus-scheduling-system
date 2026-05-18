@@ -1,0 +1,198 @@
+/* Reset */
+body {
+    margin: 0;
+    font-family: 'Segoe UI', sans-serif;
+}
+
+/* ✅ Navbar Fix (NO override conflict) */
+.navbar {
+    padding: 10px 20px;
+}
+
+/* Nav links spacing */
+.nav-link {
+    font-size: 16px;
+    padding: 8px 12px !important;
+}
+
+/* Hover effect */
+.nav-link:hover {
+    color: #0d6efd !important;
+}
+
+/* ✅ Carousel Image Fix */
+.carousel-img {
+    width: 100%;
+    height: 600px;
+    object-fit: cover;
+}
+
+/* Mobile responsive slider */
+@media (max-width: 768px) {
+    .carousel-img {
+        height: 220px;
+    }
+}
+
+/* Buttons spacing */
+.btn {
+    min-width: 140px;
+}
+
+/* Footer */
+footer {
+    margin-top: 40px;
+}
+
+/* Center card width Schedule Page */
+.form-card {
+    width: 100%;
+    max-width: 400px;
+    border-radius: 10px;
+}
+
+/* Message styling */
+#message {
+    font-weight: 500;
+}
+
+/* Optional: background */
+body {
+    background: #f5f7fa;
+}
+
+/* Shared Card Style Route Page*/
+.form-card {
+    width: 100%;
+    max-width: 400px;
+    border-radius: 10px;
+}
+
+/* Background */
+body {
+    background: #f5f7fa;
+}
+
+/* Route List Styling */
+.list-group-item {
+    border-radius: 6px;
+    margin-bottom: 5px;
+    font-weight: 500;
+}
+
+/* Shared Card Style Report Page*/
+.form-card {
+    width: 100%;
+    max-width: 500px;
+    border-radius: 10px;
+}
+
+/* Background */
+body {
+    background: #f5f7fa;
+}
+
+/* Table Styling */
+.table {
+    margin-top: 10px;
+}
+
+/* Mobile spacing */
+@media (max-width: 768px) {
+    .form-card {
+        padding: 15px;
+    }
+}
+
+/* extraaa */
+
+
+/* Remove link underline */
+.feature-link {
+    text-decoration: none;
+    color: inherit;
+    display: block;
+}
+
+/* Card Style */
+.feature-box {
+    background: white;
+    border-radius: 12px;
+    transition: 0.3s;
+    cursor: pointer;
+}
+
+/* Hover Effect */
+.feature-box:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+    background: #f8f9fa;
+}
+
+/* login register page */
+
+body {
+    background: #f5f7fa;
+}
+
+.form-card {
+    width: 100%;
+    max-width: 400px;
+    border-radius: 10px;
+}
+
+
+/* Heading Logo */
+.heading-logo {
+    height: 200%;
+    width: 200px;
+    object-fit: contain;
+}
+
+
+/* Logo Styling */
+.logo-img {
+    height: 45px;
+    width: 45px;
+    object-fit: contain;
+}
+
+/*new*/
+.feature-link {
+    text-decoration: none;
+    color: inherit;
+}
+
+.feature-box {
+    background: white;
+    border-radius: 12px;
+    transition: 0.3s;
+    cursor: pointer;
+}
+
+.feature-box:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+}
+
+
+/* Background */
+body {
+    background: #f5f7fa;
+}
+
+/* Logo */
+.logo-img {
+    height: 35px;
+}
+
+/* Card */
+.card {
+    border-radius: 12px;
+}
+
+/* Button */
+.btn {
+    min-width: 140px;
+}
+

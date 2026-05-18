@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bus Scheduling System</title>
+
+ 
+<!-- Bootstrap -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+<!-- Custom CSS -->
+<link rel="stylesheet" href="css/style.css">
+
+<style>
+    .section-card {
+        border-radius: 15px;
+        padding: 25px;
+        background: #ffffff;
+    }
+
+    .feature-box {
+        border-radius: 15px;
+        transition: 0.3s;
+        background: #fff;
+    }
+
+    .feature-box:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+    }
+
+    .carousel-img {
+        height: 400px;
+        object-fit: cover;
+    }
+    
+</style>
+ 
+
+</head>
+
+<body>
+
+<!-- ✅ Navbar -->
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark shadow-sm">
+    <div class="container-fluid">
+        <a class="navbar-brand d-flex align-items-center fw-bold" href="index.html">
+    <img src="image/logo2.png" alt="logo" class="me-2" style="height:40px;">
+    Bus Scheduling
+</a>
+
+ 
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navMenu">
+        <ul class="navbar-nav ms-auto">
+            <li class="nav-item"><a class="nav-link active" href="index.html">Home</a></li>
+            <li class="nav-item"><a class="nav-link" href="buses.html">Buses</a></li>
+            <li class="nav-item"><a class="nav-link" href="crew.html">Crew</a></li>
+            <li class="nav-item"><a class="nav-link" href="schedule.html">Schedule</a></li>
+            <li class="nav-item"><a class="nav-link" href="route.html">Routes</a></li>
+            <li class="nav-item"><a class="nav-link" href="report.html">Reports</a></li>
+        </ul>
+    </div>
+</div>
+ 
+
+</nav>
+
+<!-- ✅ Carousel -->
+
+<div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
+    <div class="carousel-inner">
+        <div class="carousel-item active">
+            <img src="image/image1.jpg" class="d-block w-100 carousel-img">
+        </div>
+        <div class="carousel-item">
+            <img src="image/image2.jpeg" class="d-block w-100 carousel-img">
+        </div>
+        <div class="carousel-item">
+            <img src="image/image3.jpg" class="d-block w-100 carousel-img">
+        </div>
+    </div>
+</div>
+
+<!-- ✅ Main Content -->
+
+<div class="container mt-5">
+
+ 
+<!-- 🔥 Overview -->
+<div class="section-card shadow-sm text-center mb-5">
+    <h2 class="fw-bold mb-3">Bus Scheduling Management System 🚍</h2>
+    <p class="text-muted">
+        The Bus Scheduling Management System is designed to streamline and automate transport operations. 
+        It helps manage buses, crew, routes, and schedules efficiently from a centralized platform.
+</p>
+<p class="text-muted">This system reduces manual errors, prevents scheduling conflicts, and improves operational efficiency by ensuring 
+    proper resource allocation.
+    </p> 
+</div>
+
+<!-- 🔥 Workflow -->
+<div class="section-card shadow-sm mb-5">
+    <h4 class="fw-bold text-center mb-3">🔄 How It Works</h4>
+    <p class="text-muted text-center">
+        Add buses and crew → Define routes → Create duty schedules →
+        Generate reports to monitor performance.
+    </p>
+</div>
+
+<!-- 🔥 Modules -->
+<div class="row g-4 text-center">
+
+    <div class="col-md-4">
+        <a href="buses.html" class="text-decoration-none">
+            <div class="feature-box p-4 shadow-sm">
+                <h5>🚌 Buses</h5>
+                <p class="text-muted">Manage all buses and capacity</p>
+            </div>
+        </a>
+    </div>
+
+    <div class="col-md-4">
+        <a href="crew.html" class="text-decoration-none">
+            <div class="feature-box p-4 shadow-sm">
+                <h5>👨‍✈️ Crew</h5>
+                <p class="text-muted">Manage drivers & conductors</p>
+            </div>
+        </a>
+    </div>
+
+    <div class="col-md-4">
+        <a href="schedule.html" class="text-decoration-none">
+            <div class="feature-box p-4 shadow-sm">
+                <h5>📅 Schedule</h5>
+                <p class="text-muted">Create and manage duties</p>
+            </div>
+        </a>
+    </div>
+
+    <div class="col-md-6">
+        <a href="route.html" class="text-decoration-none">
+            <div class="feature-box p-4 shadow-sm">
+                <h5>🛣️ Routes</h5>
+                <p class="text-muted">Define routes & check overlap</p>
+            </div>
+        </a>
+    </div>
+
+    <div class="col-md-6">
+        <a href="report.html" class="text-decoration-none">
+            <div class="feature-box p-4 shadow-sm">
+                <h5>📊 Reports</h5>
+                <p class="text-muted">View system analytics</p>
+            </div>
+        </a>
+    </div>
+
+</div>
+ 
+
+</div>
+
+<!-- ✅ Footer -->
+
+<footer class="text-center mt-5 p-3 bg-dark text-white">
+    <p class="mb-0">© 2026 Bus Scheduling System</p>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+</html>

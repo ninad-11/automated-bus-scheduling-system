@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reports - Bus Scheduling</title>
+
+<!-- Bootstrap CSS -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+<!-- Custom CSS -->
+<link rel="stylesheet" href="css/style.css">
+
+</head>
+<body>
+
+<!-- ✅ Navbar -->
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark shadow-sm">
+    <div class="container-fluid">
+        <a class="navbar-brand d-flex align-items-center fw-bold" href="index.html">
+    <img src="image/logo2.png" alt="logo" class="me-2" style="height:40px;">
+    Bus Scheduling
+</a>
+
+
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navMenu">
+        <ul class="navbar-nav ms-auto">
+            <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+            <li class="nav-item"><a class="nav-link" href="buses.html">Buses</a></li>
+            <li class="nav-item"><a class="nav-link" href="crew.html">Crew</a></li>
+            <li class="nav-item"><a class="nav-link" href="schedule.html">Schedule</a></li>
+            <li class="nav-item"><a class="nav-link" href="route.html">Routes</a></li>
+            <li class="nav-item"><a class="nav-link active" href="report.html">Reports</a></li>
+        </ul>
+    </div>
+</div>
+
+
+</nav>
+
+<!-- ✅ Main Section -->
+
+<div class="container mt-5">
+
+<div class="card p-4 shadow">
+
+    <h3 class="text-center mb-4">📊 Reports Dashboard</h3>
+
+    <!-- Report Buttons -->
+    <div class="d-flex flex-wrap justify-content-center gap-2 mb-4">
+
+        <button class="btn btn-primary"
+                onclick="loadReport('crew')">
+            Crew Report
+        </button>
+
+        <button class="btn btn-success"
+                onclick="loadReport('bus')">
+            Bus Report
+        </button>
+
+        <button class="btn btn-warning"
+                onclick="loadReport('duty-type')">
+            Duty Type Report
+        </button>
+
+        <button class="btn btn-info"
+                onclick="loadReport('daily')">
+            Daily Report
+        </button>
+
+        <button class="btn btn-dark"
+                onclick="loadReport('route')">
+            Route Report
+        </button>
+    </div>
+
+    <!-- Report Table -->
+    <div class="table-responsive">
+        <table id="reportTable" class="table table-bordered text-center">
+            <thead class="table-dark">
+                <tr>
+                    <th>Data</th>
+                    <th>Value</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td colspan="2">Select a report to view data</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+</div>
+
+</div>
+
+
+<!-- Bootstrap JS -->
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+<!-- ✅ JavaScript -->
+
+<script>
+
+function loadReport(type) {
+
+    document.getElementById("reportTable").innerHTML = `
+        <tr>
+            <td colspan='10'>Loading...</td>
+        </tr>
+    `;
+
+    fetch("http://localhost:3000/api/reports/" + type)
+
+    .then(res => res.json())
+
+    .then(data => {
+
+        if (!data.data || data.data.length === 0) {
+
+            document.getElementById("reportTable").innerHTML = `
+                <tr>
+                    <td colspan='10'>No data found</td>
+                </tr>
+            `;
+
+            return;
+        }
+
+        const reportData = data.data;
+
+        const headers = Object.keys(reportData[0]);
+
+        // ✅ Proper display names
+        const headerMap = {
+
+            crew_id: "ID",
+            crew_name: "Crew Name",
+            role: "Role",
+            total_duties: "Total Duties",
+
+            bus_id: "Bus ID",
+            registration_number: "Registration Number",
+            status: "Status",
+            depot_name: "Depot Name",
+
+            duty_type: "Duty Type",
+            total: "Total",
+
+            schedule_date: "Schedule Date",
+            linked_duties: "Linked Duties",
+            unlinked_duties: "Unlinked Duties",
+
+            route_id: "Route ID",
+            route_name: "Route Name"
+        };
+
+        // ✅ Create headers ONCE
+        let headerHTML = "";
+
+        headers.forEach(header => {
+
+            headerHTML += `
+                <th>${headerMap[header] || header}</th>
+            `;
+        });
+
+        // ✅ Create rows
+        let rowsHTML = "";
+
+        reportData.forEach(item => {
+
+            rowsHTML += "<tr>";
+
+            headers.forEach(header => {
+
+                rowsHTML += `
+                    <td>${item[header]}</td>
+                `;
+            });
+
+            rowsHTML += "</tr>";
+        });
+
+        // ✅ Final render
+        document.getElementById("reportTable").innerHTML = `
+
+            <thead class="table-dark">
+                <tr>
+                    ${headerHTML}
+                </tr>
+            </thead>
+
+            <tbody>
+                ${rowsHTML}
+            </tbody>
+        `;
+    })
+
+    .catch(err => {
+
+        console.error(err);
+
+        document.getElementById("reportTable").innerHTML = `
+            <tr>
+                <td colspan='10' class='text-danger'>
+                    Error loading report
+                </td>
+            </tr>
+        `;
+    });
+}
+
+</script>
+
+</body>
+</html>

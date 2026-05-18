@@ -24,6 +24,47 @@ const getAllCrew = async (req, res)=>{
     }
 }
 
+
+// POST /api/add-crew
+
+const addCrew = async (req, res) => {
+
+    try {
+
+        const { name, role } = req.body
+
+        if (!name || !role) {
+
+            return res.status(400).json({
+                success: false,
+                message: 'All fields are required'
+            })
+        }
+        
+        await db.query(
+            `INSERT INTO crew (name, role)
+            VALUES (?, ?)`,
+            [name, role]
+        )
+        
+        res.status(201).json({
+            success: true,
+            message: 'Crew added successfully'
+        })
+        
+    } catch (err) {
+        
+        console.error('addCrew error:', err.message)
+        
+        res.status(500).json({
+            success: false,
+            message: err.message
+        })
+    }
+}
+
+
 module.exports = {
-    getAllCrew
+    getAllCrew,
+    addCrew
 }

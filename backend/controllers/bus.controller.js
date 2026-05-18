@@ -24,3 +24,45 @@ const getAllBuses = async (req, res)=>{
 module.exports = {
     getAllBuses
 }
+
+// POST /api/add-bus
+const addBus = async (req, res) => {
+
+    try {
+
+        const { registration_number, capacity } = req.body
+
+        if (!registration_number || !capacity) {
+
+            return res.status(400).json({
+                success: false,
+                message: 'All fields are required'
+            })
+        }
+
+        await db.query(
+            `INSERT INTO bus (registration_number, capacity)
+             VALUES (?, ?)`,
+            [registration_number, capacity]
+        )
+
+        res.status(201).json({
+            success: true,
+            message: 'Bus added successfully'
+        })
+
+    } catch (err) {
+
+        console.error(err)
+
+        res.status(500).json({
+            success: false,
+            message: err.message
+        })
+    }
+}
+
+module.exports = {
+    getAllBuses,
+    addBus
+}
