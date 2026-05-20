@@ -143,7 +143,7 @@ document.getElementById("dutyForm").addEventListener("submit", function(e) {
         routeId: document.getElementById("routeId").value
     };
 
-    fetch("http://localhost:3000/api/create-duty", {
+    fetch("http://automated-bus-backend.onrender.com/api/create-duty", {
         method: "POST",
         headers: {
             "Content-Type": "application/json"
@@ -165,7 +165,7 @@ document.getElementById("dutyForm").addEventListener("submit", function(e) {
 function loadDuties() {
     dutyTable.innerHTML = "<tr><td colspan='3'>Loading...</td></tr>";
 
-    fetch("http://localhost:3000/api/get-duties")
+    fetch("http://automated-bus-backend.onrender.com/api/get-duties")
     .then(res => res.json())
     .then(result => {
 
@@ -189,7 +189,7 @@ function loadDuties() {
 function getDutyByDate() {
     const date = dutyDate.value;
 
-    fetch("http://localhost:3000/api/get-duties-by-date?date=" + date)
+    fetch("http://automated-bus-backend.onrender.com/api/get-duties-by-date?date=" + date)
     .then(res => res.json())
     .then(result => {
 
