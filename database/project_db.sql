@@ -19,7 +19,7 @@
 -- Table structure for table `bus`
 --
 
-DROP TABLE IF EXISTS `bus`;
+-- DROP TABLE IF EXISTS `bus`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `bus` (
@@ -49,7 +49,7 @@ UNLOCK TABLES;
 -- Table structure for table `crew`
 --
 
-DROP TABLE IF EXISTS `crew`;
+-- DROP TABLE IF EXISTS `crew`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `crew` (
@@ -74,7 +74,7 @@ UNLOCK TABLES;
 -- Table structure for table `depot`
 --
 
-DROP TABLE IF EXISTS `depot`;
+-- DROP TABLE IF EXISTS `depot`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `depot` (
@@ -99,7 +99,7 @@ UNLOCK TABLES;
 -- Table structure for table `duty`
 --
 
-DROP TABLE IF EXISTS `duty`;
+-- DROP TABLE IF EXISTS `duty`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `duty` (
@@ -139,7 +139,7 @@ UNLOCK TABLES;
 -- Table structure for table `route`
 --
 
-DROP TABLE IF EXISTS `route`;
+-- DROP TABLE IF EXISTS `route`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `route` (
@@ -163,7 +163,7 @@ UNLOCK TABLES;
 -- Table structure for table `route_stop`
 --
 
-DROP TABLE IF EXISTS `route_stop`;
+-- DROP TABLE IF EXISTS `route_stop`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `route_stop` (
@@ -191,7 +191,7 @@ UNLOCK TABLES;
 -- Table structure for table `schedule`
 --
 
-DROP TABLE IF EXISTS `schedule`;
+-- DROP TABLE IF EXISTS `schedule`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `schedule` (
@@ -215,7 +215,7 @@ UNLOCK TABLES;
 -- Table structure for table `stop`
 --
 
-DROP TABLE IF EXISTS `stop`;
+-- DROP TABLE IF EXISTS `stop`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `stop` (
@@ -241,7 +241,7 @@ UNLOCK TABLES;
 -- Table structure for table `users`
 --
 
-DROP TABLE IF EXISTS `users`;
+-- DROP TABLE IF EXISTS `users`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `users` (
