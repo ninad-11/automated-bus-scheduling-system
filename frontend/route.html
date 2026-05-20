@@ -115,7 +115,7 @@ function loadRoutes() {
     document.getElementById("routeList").innerHTML =
         "<li class='list-group-item'>Loading...</li>";
 
-    fetch("http://automated-bus-backend.onrender.com/api/get-routes")
+    fetch("https://automated-bus-backend.onrender.com/api/get-routes")
 
     .then(res => res.json())
 
@@ -166,7 +166,7 @@ document.getElementById("addRouteForm")
     const stopIds =
         JSON.parse(document.getElementById("stopIds").value);
 
-    fetch("http://automated-bus-backend.onrender.com/api/add-route", {
+    fetch("https://automated-bus-backend.onrender.com/api/add-route", {
 
         method: "POST",
 
@@ -205,7 +205,7 @@ document.getElementById("overlapForm").addEventListener("submit", function(e) {
 
     const stops = document.getElementById("checkoverlap").value;
 
-    fetch("http://automated-bus-backend.onrender.com/api/routes/check-overlap", {
+    fetch("https://automated-bus-backend.onrender.com/api/routes/check-overlap", {
         method: "POST",
         headers: {
             "Content-Type": "application/json"

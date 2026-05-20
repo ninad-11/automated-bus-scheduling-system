@@ -132,7 +132,7 @@ document.getElementById("busForm").addEventListener("submit", function(e) {
     const registration_number = document.getElementById("busNumber").value;
     const capacity = document.getElementById("capacity").value;
 
-    fetch("http://automated-bus-backend.onrender.com/api/add-bus", {
+    fetch("https://automated-bus-backend.onrender.com/api/add-bus", {
         method: "POST",
         headers: {"Content-Type": "application/json"},
         body: JSON.stringify({ registration_number, capacity })
@@ -152,7 +152,7 @@ function loadBuses() {
     document.getElementById("busTable").innerHTML =
         "<tr><td colspan='3'>Loading...</td></tr>";
 
-    fetch("http://automated-bus-backend.onrender.com/api/get-buses")
+    fetch("https://automated-bus-backend.onrender.com/api/get-buses")
     .then(res => res.json())
     .then(data => {
         let rows = "";
