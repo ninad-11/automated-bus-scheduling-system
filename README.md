@@ -1,7 +1,7 @@
 # 🚍 Automated Bus Scheduling and Route Management System
+![CI](https://github.com/ninad-11/automated-bus-scheduling-system/actions/workflows/nodejs.yml/badge.svg)
 
 A full-stack web application developed to automate bus scheduling, crew allocation, route management, and reporting. The system helps reduce manual scheduling errors, prevent conflicts, and improve resource utilization.
-![CI](https://github.com/ninad-11/automated-bus-scheduling-system/actions/workflows/nodejs.yml/badge.svg)
 
 ## 📌 Features
 
